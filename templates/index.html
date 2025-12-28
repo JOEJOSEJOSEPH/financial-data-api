@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Financial Data Downloader</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url("https://images.unsplash.com/photo-1559526324-593bc073d938");
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Dark overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main card */
+        .card {
+            background: white;
+            padding: 30px 40px;
+            width: 420px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #1f4fd8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #163bb5;
+        }
+
+        .info {
+            margin-top: 18px;
+            font-size: 12px;
+            color: #333;
+            background: #f3f3f3;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .footer {
+            margin-top: 15px;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="overlay">
+    <div class="card">
+        <h2>📈 Financial Data Downloader</h2>
+        <div class="subtitle">
+            Download historical stock data as CSV
+        </div>
+
+        <form action="/download" method="get">
+            <label>Select Popular Ticker</label>
+            <select onchange="document.getElementById('ticker').value=this.value">
+                <option value="">-- Choose --</option>
+
+                <optgroup label="US Stocks">
+                    <option value="AAPL">AAPL – Apple</option>
+                    <option value="MSFT">MSFT – Microsoft</option>
+                    <option value="GOOGL">GOOGL – Alphabet</option>
+                    <option value="AMZN">AMZN – Amazon</option>
+                </optgroup>
+
+                <optgroup label="Indian Stocks (NSE)">
+                    <option value="RELIANCE.NS">RELIANCE.NS – Reliance</option>
+                    <option value="TCS.NS">TCS.NS – TCS</option>
+                    <option value="INFY.NS">INFY.NS – Infosys</option>
+                    <option value="HDFCBANK.NS">HDFCBANK.NS – HDFC Bank</option>
+                </optgroup>
+
+                <optgroup label="Indices">
+                    <option value="^GSPC">S&P 500</option>
+                    <option value="^NSEI">NIFTY 50</option>
+                    <option value="^DJI">Dow Jones</option>
+                </optgroup>
+            </select>
+
+            <br><br>
+
+            <label>Or Enter Custom Ticker</label>
+            <input type="text" id="ticker" name="ticker" placeholder="AAPL or RELIANCE.NS" required>
+
+
+            <label>Start Date</label>
+            <input type="date" name="start" required>
+
+            <label>End Date</label>
+            <input type="date" name="end" required>
+
+            <button type="submit">Download CSV</button>
+        </form>
+
+        <div class="info">
+            <b>How to find tickers:</b><br>
+            • US stocks: Use symbols from Yahoo Finance (e.g. <b>AAPL</b>, <b>MSFT</b>)<br>
+            • Indian stocks (NSE): Add <b>.NS</b> (e.g. <b>RELIANCE.NS</b>, <b>TCS.NS</b>)<br>
+            • Indian stocks (BSE): Add <b>.BO</b> (e.g. <b>RELIANCE.BO</b>)<br>
+            <br>
+            🔗 Find tickers at: <b>finance.yahoo.com</b>
+        </div>
+
+        <div class="footer">
+            Data via yfinance • For educational & research use only<br>
+            Not affiliated with Yahoo Finance
+        </div>
+    </div>
+</div>
+</body>
+</html>
